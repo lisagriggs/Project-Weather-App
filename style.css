@@ -3,8 +3,8 @@
   text-align: center;
   background-image: linear-gradient(to top, #e6e9f0 0%, #eef1f5 100%);
   max-width: 100%;
-  margin: 20px auto;
-  padding: 0px 0px 50px 0px;
+  margin: 10px auto;
+  padding: 0px 0px 40px 0px;
   border-radius: 20px;
   max-width: 95%;
 }
@@ -118,4 +118,5 @@ h3 {
 
 .footer {
   text-align: center;
+  font-size: 14px;
 }
