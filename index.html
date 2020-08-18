@@ -1,124 +1,116 @@
 <!DOCTYPE html>
 <html>
-
-<head>
+  <head>
     <title>Weather App</title>
     <meta charset="UTF-8" />
     <link rel="stylesheet" href="style.css" />
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous" />
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;700&display=swap" rel="stylesheet" />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  </head>
 
-</head>
-
-<body>
+  <body>
     <div class="container">
-        <!--Search Bar-->
-        <div class="row justify-content-md-center">
-            <form class="search">
-                <div class="form-row">
-                    <div class="col-md-auto">
-                        <input type="input" class="search-city" placeholder="Enter a city" />
-                    </div>
-
-                    <div class="col-md-auto">
-                        <button type="submit" class="btn btn-secondary">Search</button>
-                    </div>
-
-                    <div class="col-md-auto">
-                        <button id="current-location" class="btn btn-secondary">Current Location</button>
-                    </div>
-                </div>
-
-        </div>
-        </form>
-
-
-        <!--Name of City-->
-        <h1 id="city-name"><em>London</em></h1>
-        <p id="current-time">
-        <p>
-
-            <!--Weather Statistics-->
-        <div class="weather">
-            <div class="row main-row">
-                <div class="col-3 main-col current-stats">
-                    <p class="title">Currently</p>
-                    <p class="main-emoji">
-                        ☀️
-                    </p>
-                    <h3 id="temperature">17</h3>
-                    <p class="measure">
-                        <a href="#" id="celcius-click">°C</a>
-                        |
-                        <a href="#" id="fahrenheit-click">°F</a></p>
-                </div>
-                <div class="col-9">
-                    <div class="row">
-                        <div class="col-12">
-                            <p class="title">Next 5 days</p>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col">
-                            <p class="date">
-                                Sat</br>18/07
-                            </p>
-                            <p class="sub-emoji">
-                                🌤
-                            </p>
-                            <p class="temp" id="temperature">26</p>
-                        </div>
-                        <div class="col">
-                            <p class="date">
-                                Sun</br>19/07
-                            </p>
-                            <p class="sub-emoji">
-                                🌧
-                            </p>
-                            <p class="temp" id="temperature">19</p>
-                        </div>
-                        <div class="col">
-                            <p class="date">
-                                Mon</br>20/07
-                            </p>
-                            <p class="sub-emoji">
-                                🌤
-                            </p>
-                            <p class="temp" id="temperature">22</p>
-                        </div>
-                        <div class="col">
-                            <p class="date">
-                                Tues</br>21/07
-                            </p>
-                            <p class="sub-emoji">
-                                🌤
-                            </p>
-                            <p class="temp" id="temperature">22</p>
-                        </div>
-                        <div class="col">
-                            <p class="date">
-                                Weds</br>22/07
-                            </p>
-                            <p class="sub-emoji">
-                                🌤
-                            </p>
-                            <p class="temp" id="temperature">23</p>
-                        </div>
-                    </div>
-                </div>
+      <!--Search Bar-->
+      <div class="row justify-content-md-center">
+        <form class="search">
+          <div class="form-row">
+            <div class="col-md-auto">
+              <input type="input" class="search-city" placeholder="Enter a city" />
             </div>
 
+            <div class="col-md-auto">
+              <button type="submit" class="btn btn-secondary">Search</button>
+            </div>
+
+            <div class="col-md-auto">
+              <button id="current-location" class="btn btn-secondary">Current Location</button>
+            </div>
+          </div>
+        </form>
+      </div>
+
+      <!--Name of City-->
+      <h1 id="city-name"><em>London</em></h1>
+      <p class="current-time" id="current-time"></p>
+      <p>
+        <!--Weather Statistics-->
+      </p>
+
+      <div class="weather">
+        <div class="row justify-content-md-center">
+          <div class="col-3 main-col current-stats">
+            <p class="title">Clear Skies</p>
+            <p class="weather-description">Precipitation: 54%<br />Wind: 7km/h</p>
+            <p class="main-emoji">☀️</p>
+            <h3 id="temperature">17</h3>
+            <p class="measure">
+              <a href="#" id="celcius-click">°C</a>
+              |
+              <a href="#" id="fahrenheit-click">°F</a>
+            </p>
+          </div>
+          <div class="col-9">
+            <div class="row">
+              <div class="col-12">
+                <p class="title">Next 5 days</p>
+              </div>
+            </div>
+            <div class="row align-items-center">
+              <div class="col">
+                <p class="time">Sat<br />23:00</p>
+                <p class="sub-emoji">
+                  🌤
+                </p>
+                <p class="temp" id="temperature">26</p>
+              </div>
+              <div class="col">
+                <p class="time">Sat<br />18/07</p>
+                <p class="sub-emoji">
+                  🌧
+                </p>
+                <p class="temp" id="temperature">19</p>
+              </div>
+              <div class="col">
+                <p class="time">Sat<br />18/07</p>
+                <p class="sub-emoji">
+                  🌤
+                </p>
+                <p class="temp" id="temperature">22</p>
+              </div>
+              <div class="col">
+                <p class="time">Sat<br />18/07</p>
+                <p class="sub-emoji">
+                  🌤
+                </p>
+                <p class="temp" id="temperature">22</p>
+              </div>
+              <div class="col">
+                <p class="time">Sat<br />18/07</p>
+                <p class="sub-emoji">
+                  🌤
+                </p>
+                <p class="temp" id="temperature">23</p>
+              </div>
+            </div>
+          </div>
         </div>
-        <!--Footer-->
+      </div>
+      <!--Footer-->
     </div>
-        <p class="footer">
-            <a href="https://github.com/lisagriggs/Project-Weather-App.git">Github respository</a> 
-            by Lisa Griggs
-        </p>
+    <p class="footer">
+      <a href="https://github.com/lisagriggs/Project-Weather-App.git">Github respository</a>
+      by Lisa Griggs
+    </p>
 
     <script src="index.js"></script>
-</body>
-
+  </body>
 </html>
