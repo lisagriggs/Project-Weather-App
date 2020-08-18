@@ -40,6 +40,14 @@ fahrenheit.addEventListener("click", convertFarenheit);
 function forecast(response) {
   let day1 = document.querySelector("#temperature");
   day1.innerHTML = Math.round(response.data.main.temp);
+
+  let weatherDescription = document.querySelector("#description");
+  let humidity = document.querySelector("#humidity");
+  let wind = document.querySelector("#wind");
+
+  weatherDescription.innerHTML = response.data.weather[0].main;
+  humidity.innerHTML = response.data.main.humidity;
+  wind.innerHTML = Math.round(response.data.wind.speed);
 }
 
 function city(event) {
@@ -52,6 +60,7 @@ function city(event) {
   let url = `https://api.openweathermap.org/data/2.5/weather?q=${searchedCity.value}&appid=${apiKey}&units=metric`;
   axios.get(url).then(forecast);
 }
+
 let form = document.querySelector(".search");
 form.addEventListener("submit", city);
 
