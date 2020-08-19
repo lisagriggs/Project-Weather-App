@@ -74,8 +74,6 @@ function nextHours(response) {
   let futureForecast = document.querySelector("#forecast");
   let forecast = response.data.list[0];
 
-  //console.log(forecast);
-
   futureForecast.innerHTML = `
     <div class="col">
       <p class="time">${formatHours(forecast.dt * 1000)}</p>
@@ -150,22 +148,6 @@ function currentTemp(response) {
   let day1 = document.querySelector("#temperature");
   day1.innerHTML = `${Math.round(response.data.main.temp)}°`;
 }
-
-function currentPosition(position) {
-  let lat = position.coords.latitude;
-  let lon = position.coords.longitude;
-  let apiKey = "66e038d90b67f15e0494a6c2611fd584";
-  let url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKey}&units=metric`;
-
-  axios.get(url).then(currentTemp);
-}
-
-function geoLocation() {
-  navigator.geolocation.getCurrentPosition(currentPosition);
-}
-
-let currentButton = document.querySelector("#current-location");
-currentButton.addEventListener("click", geoLocation);
 
 function search(city) {
   let cityName = document.querySelector("#city-name");
