@@ -141,14 +141,7 @@ function city(event) {
 let form = document.querySelector(".search");
 form.addEventListener("submit", city);
 
-//CurrentLocation
-function currentTemp(response) {
-  let location = document.querySelector("#city-name");
-  location.innerHTML = "Your Current location";
-  let day1 = document.querySelector("#temperature");
-  day1.innerHTML = `${Math.round(response.data.main.temp)}°`;
-}
-
+//Onload
 function search(city) {
   let cityName = document.querySelector("#city-name");
   cityName.innerHTML = `${city}`;
