@@ -13,7 +13,21 @@ let day = days[currentTime.getDay()];
 let hour = addZero(currentTime.getHours());
 let minutes = addZero(currentTime.getMinutes());
 let time = document.querySelector("#current-time");
-time.innerHTML = day + ", " + hour + ":" + minutes;
+time.innerHTML = `${day}, ${hour}:${minutes}`;
+
+function formatHours(timestamp) {
+  let date = new Date(timestamp);
+  let hours = date.getHours();
+  if (hours < 10) {
+    hours = `0${hours}`;
+  }
+  let minutes = date.getMinutes();
+  if (minutes < 10) {
+    minutes = `0${minutes}`;
+  }
+
+  return `${hours}:${minutes}`;
+}
 
 //Celcius & Fahrenheit
 function convertFarenheit(event) {
@@ -39,7 +53,7 @@ fahrenheit.addEventListener("click", convertFarenheit);
 //City name and temp
 function forecast(response) {
   let day1 = document.querySelector("#temperature");
-  day1.innerHTML = Math.round(response.data.main.temp);
+  day1.innerHTML = `${Math.round(response.data.main.temp)}°`;
 
   let weatherDescription = document.querySelector("#description");
   let humidity = document.querySelector("#humidity");
@@ -56,6 +70,62 @@ function forecast(response) {
   icon.setAttribute("alt", response.data.weather.description);
 }
 
+function nextHours(response) {
+  let futureForecast = document.querySelector("#forecast");
+  let forecast = response.data.list[0];
+
+  //console.log(forecast);
+
+  futureForecast.innerHTML = `
+    <div class="col">
+      <p class="time">${formatHours(forecast.dt * 1000)}</p>
+      <img src="http://openweathermap.org/img/wn/${
+        forecast.weather[0].icon
+      }@2x.png" class="sub-emoji"/>                
+      <p class="temp" id="temperature">${Math.round(forecast.main.temp)}°</p>
+    </div>`;
+
+  forecast = response.data.list[1];
+  futureForecast.innerHTML += `
+    <div class="col">
+      <p class="time">${formatHours(forecast.dt * 1000)}</p>
+      <img src="http://openweathermap.org/img/wn/${
+        forecast.weather[0].icon
+      }@2x.png" class="sub-emoji"/>                
+      <p class="temp" id="temperature">${Math.round(forecast.main.temp)}°</p>
+    </div>`;
+
+  forecast = response.data.list[2];
+  futureForecast.innerHTML += `
+    <div class="col">
+      <p class="time">${formatHours(forecast.dt * 1000)}</p>
+      <img src="http://openweathermap.org/img/wn/${
+        forecast.weather[0].icon
+      }@2x.png" class="sub-emoji"/>                
+      <p class="temp" id="temperature">${Math.round(forecast.main.temp)}°</p>
+    </div>`;
+
+  forecast = response.data.list[3];
+  futureForecast.innerHTML += `
+    <div class="col">
+      <p class="time">${formatHours(forecast.dt * 1000)}</p>
+      <img src="http://openweathermap.org/img/wn/${
+        forecast.weather[0].icon
+      }@2x.png" class="sub-emoji"/>                
+      <p class="temp" id="temperature">${Math.round(forecast.main.temp)}°</p>
+    </div>`;
+
+  forecast = response.data.list[4];
+  futureForecast.innerHTML += `
+    <div class="col">
+      <p class="time">${formatHours(forecast.dt * 1000)}</p>
+      <img src="http://openweathermap.org/img/wn/${
+        forecast.weather[0].icon
+      }@2x.png" class="sub-emoji"/>                
+      <p class="temp" id="temperature">${Math.round(forecast.main.temp)}°</p>
+    </div>`;
+}
+
 function city(event) {
   event.preventDefault();
   let searchedCity = document.querySelector(".search-city");
@@ -65,6 +135,9 @@ function city(event) {
   let apiKey = "66e038d90b67f15e0494a6c2611fd584";
   let url = `https://api.openweathermap.org/data/2.5/weather?q=${searchedCity.value}&appid=${apiKey}&units=metric`;
   axios.get(url).then(forecast);
+
+  apiUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${searchedCity.value}&appid=${apiKey}&units=metric`;
+  axios.get(apiUrl).then(nextHours);
 }
 
 let form = document.querySelector(".search");
@@ -75,7 +148,7 @@ function currentTemp(response) {
   let location = document.querySelector("#city-name");
   location.innerHTML = "Your Current location";
   let day1 = document.querySelector("#temperature");
-  day1.innerHTML = Math.round(response.data.main.temp);
+  day1.innerHTML = `${Math.round(response.data.main.temp)}°`;
 }
 
 function currentPosition(position) {
@@ -93,3 +166,17 @@ function geoLocation() {
 
 let currentButton = document.querySelector("#current-location");
 currentButton.addEventListener("click", geoLocation);
+
+function search(city) {
+  let cityName = document.querySelector("#city-name");
+  cityName.innerHTML = `${city}`;
+
+  let apiKey = "66e038d90b67f15e0494a6c2611fd584";
+  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
+  axios.get(apiUrl).then(forecast);
+
+  apiUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${apiKey}&units=metric`;
+  axios.get(apiUrl).then(nextHours);
+}
+
+search("London");
