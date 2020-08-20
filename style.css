@@ -103,6 +103,16 @@ h3 {
   margin: 0 auto;
 }
 
+.current-stats .active {
+  cursor: default;
+  text-decoration: none;
+}
+
+.current-stats .active:hover {
+  color: #b666d2;
+  text-decoration: none;
+}
+
 .measure {
   margin: 0 auto 10px;
 }

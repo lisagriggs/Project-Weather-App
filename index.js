@@ -33,12 +33,17 @@ function formatHours(timestamp) {
 function convertFarenheit(event) {
   event.preventDefault();
   let currentTemp = document.querySelector("#temperature");
+
+  celcius.classList.remove("active");
+  fahrenheit.classList.add("active");
   let farenheitTemp = Math.round(currentTemp.innerHTML * (9 / 5) + 32);
   currentTemp.innerHTML = farenheitTemp;
 }
 
 function convertCelcius(event) {
   event.preventDefault();
+  celcius.classList.add("active");
+  fahrenheit.classList.remove("active");
   let currentTemp = document.querySelector("#temperature");
   let celciusTemp = Math.round((currentTemp.innerHTML - 32) * (5 / 9));
   currentTemp.innerHTML = celciusTemp;
@@ -53,7 +58,7 @@ fahrenheit.addEventListener("click", convertFarenheit);
 //City name and temp
 function forecast(response) {
   let day1 = document.querySelector("#temperature");
-  day1.innerHTML = `${Math.round(response.data.main.temp)}°`;
+  day1.innerHTML = `${Math.round(response.data.main.temp)}`;
 
   let weatherDescription = document.querySelector("#description");
   let humidity = document.querySelector("#humidity");
@@ -80,7 +85,7 @@ function nextHours(response) {
       <img src="http://openweathermap.org/img/wn/${
         forecast.weather[0].icon
       }@2x.png" class="sub-emoji"/>                
-      <p class="temp" id="temperature">${Math.round(forecast.main.temp)}°</p>
+      <p class="temp"><span id="temperature">${Math.round(forecast.main.temp)}</span>°</p>
     </div>`;
 
   forecast = response.data.list[1];
@@ -90,7 +95,7 @@ function nextHours(response) {
       <img src="http://openweathermap.org/img/wn/${
         forecast.weather[0].icon
       }@2x.png" class="sub-emoji"/>                
-      <p class="temp" id="temperature">${Math.round(forecast.main.temp)}°</p>
+      <p class="temp"><span id="temperature">${Math.round(forecast.main.temp)}</span>°</p>
     </div>`;
 
   forecast = response.data.list[2];
@@ -100,7 +105,7 @@ function nextHours(response) {
       <img src="http://openweathermap.org/img/wn/${
         forecast.weather[0].icon
       }@2x.png" class="sub-emoji"/>                
-      <p class="temp" id="temperature">${Math.round(forecast.main.temp)}°</p>
+      <p class="temp"><span id="temperature">${Math.round(forecast.main.temp)}</span>°</p>
     </div>`;
 
   forecast = response.data.list[3];
@@ -110,7 +115,7 @@ function nextHours(response) {
       <img src="http://openweathermap.org/img/wn/${
         forecast.weather[0].icon
       }@2x.png" class="sub-emoji"/>                
-      <p class="temp" id="temperature">${Math.round(forecast.main.temp)}°</p>
+      <p class="temp"><span id="temperature">${Math.round(forecast.main.temp)}</span>°</p>
     </div>`;
 
   forecast = response.data.list[4];
@@ -120,7 +125,7 @@ function nextHours(response) {
       <img src="http://openweathermap.org/img/wn/${
         forecast.weather[0].icon
       }@2x.png" class="sub-emoji"/>                
-      <p class="temp" id="temperature">${Math.round(forecast.main.temp)}°</p>
+      <p class="temp"><span id="temperature">${Math.round(forecast.main.temp)}</span>°</p>
     </div>`;
 }
 
