@@ -36,6 +36,10 @@ function convertFarenheit(event) {
 
   celcius.classList.remove("active");
   fahrenheit.classList.add("active");
+
+  fahrenheit.removeEventListener("click", convertFarenheit);
+  celcius.addEventListener("click", convertCelcius);
+
   let farenheitTemp = Math.round(currentTemp.innerHTML * (9 / 5) + 32);
   currentTemp.innerHTML = farenheitTemp;
 }
@@ -44,6 +48,10 @@ function convertCelcius(event) {
   event.preventDefault();
   celcius.classList.add("active");
   fahrenheit.classList.remove("active");
+
+  celcius.removeEventListener("click", convertCelcius);
+  fahrenheit.addEventListener("click", convertFarenheit);
+
   let currentTemp = document.querySelector("#temperature");
   let celciusTemp = Math.round((currentTemp.innerHTML - 32) * (5 / 9));
   currentTemp.innerHTML = celciusTemp;
